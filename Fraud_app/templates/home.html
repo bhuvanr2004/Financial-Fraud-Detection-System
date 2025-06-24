@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Fraud Detection System{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Welcome to the Fraud Detection System</h2>
+        </div>
+        <div class="card-body">
+            <p class="lead">This system helps you detect fraudulent transactions using machine learning.</p>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Check Transaction</h5>
+                            <p class="card-text">Enter transaction details to check for potential fraud.</p>
+                            <form method="post" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">Check Transaction</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Train Model</h5>
+                            <p class="card-text">Train a new fraud detection model with the latest data.</p>
+                            <a href="{% url 'fraud_app:train_model' %}" class="btn btn-primary">Train Model</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms).forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+</script>
+{% endblock %} 
