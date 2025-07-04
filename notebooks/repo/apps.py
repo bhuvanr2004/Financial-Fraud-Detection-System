@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-
-class FraudAppConfig(AppConfig):
+class SrcConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'fraud_app'
+    name = 'src'
+    verbose_name = 'Source Code' 
